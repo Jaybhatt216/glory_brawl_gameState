@@ -4,16 +4,19 @@ var player, enemy, platforms, ledge, cursors, stun, wing, shield, spikes, roofSp
 var runFastX = false, jumpHigherX = false, stunGunWeapon = false;
 
 ////////////////////////////////////////////////////////////////GAME STATES////////////////////////////////////////////////////////////////
-game.state.add('state1',demo.state1);
-game.state.add('state2',demo.state2);
-game.state.add('state3',demo.state3);
-game.state.add('state4',demo.state4);
+game.state.add('state1',brawl.state1);
+game.state.add('state2',brawl.state2);
+game.state.add('state3',brawl.state3);
+game.state.add('state4',brawl.state4);
 game.state.start('state1');
 //game.state.start('state2');
 //game.state.start('state3');
 //game.state.start('state4');
 ////////////////////////////////////////////////////////////////PHASER 2 GAME (GLORY_BRAWL)////////////////////////////////////////////////////////////////
 
+// Game States Empty Object Held
+var brawl= {};
+//
 //Changing Game States Where you Press Numbers
 function changeState (i,stateNum) {
   console.log(i);
@@ -30,4 +33,5 @@ function addChangeStateEventListeners() {
   addKeyCallback(Phaser.Keyboard.THREE, changeState,3);
   addKeyCallback(Phaser.Keyboard.FOUR, changeState,4);
 }
+
 

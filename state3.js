@@ -1,5 +1,5 @@
-demo.state3=function(){};
-demo.state3.prototype= {
+brawl.state3=function(){};
+brawl.state3.prototype= {
     preload: function (){
         game.load.image('background-three', 'assets/lose.png');
     },
@@ -7,7 +7,7 @@ demo.state3.prototype= {
         game.add.sprite(0,0, 'background-three');
         console.log("state3");
         addChangeStateEventListeners();
-        
+
     },
     update: function (){}
 };

@@ -1,7 +1,7 @@
-demo.state4=function(){};
-demo.state4.prototype= {
+brawl.state4=function(){};
+brawl.state4.prototype= {
     preload: function (){
-        game.load.image('background-four', 'assets/sky.png');
+        game.load.image('background-four', 'assets/win.png');
     },
     create: function (){
         game.add.sprite(0,0, 'background-four');

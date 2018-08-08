@@ -1,6 +1,5 @@
-demo.state2=function(){};
-demo.state2.prototype= {
-
+brawl.state2=function(){};
+brawl.state2.prototype= {
     preload: function (){
         game.load.image('sky', 'assets/sky2.png');
         game.load.image('ground', 'assets/platform2.png');
@@ -352,6 +351,7 @@ demo.state2.prototype= {
     
 };
 
+//Event Handlers
 function killItemRange (weapon,stun) {
     stun.kill();
 }
