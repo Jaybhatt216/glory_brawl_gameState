@@ -1,2 +1,2 @@
-# glory_brawl_gameState
-GameStates
+# glory_brawl
+Project 1 Game
