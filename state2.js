@@ -388,10 +388,12 @@ function platformMover (player,ledge) {
 
 function deathOne(victim, killer) {
   victim.kill();
+  game.state.start('state3');
 }
 
 function deathTwo(killer, victim) {
   victim.kill();
+  game.state.start('state3');
 }
 
 
