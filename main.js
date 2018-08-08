@@ -15,7 +15,6 @@ game.state.start('state1');
 ////////////////////////////////////////////////////////////////PHASER 2 GAME (GLORY_BRAWL)////////////////////////////////////////////////////////////////
 
 // Game States Empty Object Held
-var brawl= {};
 //
 //Changing Game States Where you Press Numbers
 function changeState (i,stateNum) {

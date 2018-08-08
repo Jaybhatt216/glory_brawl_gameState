@@ -1,3 +1,4 @@
+var brawl= {};
 brawl.state1=function(){};
 brawl.state1.prototype= {
     preload: function (){
