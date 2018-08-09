@@ -7,7 +7,7 @@ brawl.state3.prototype= {
         game.add.sprite(200,250, 'background-three');
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         console.log("state3");
-        text = game.add.text(250, 200, 'Spacebar to Play Again');
+        text = game.add.text(350, 200, 'Spacebar to Play Again');
 
         //	Center align
         text.anchor.set(0.5);
