@@ -8,7 +8,6 @@ brawl.state1.prototype= {
         game.add.sprite(0,0, 'background-one');
         console.log("state1");
         addChangeStateEventListeners();
-        startGame();
     },
     update: function (){}
 };

@@ -4,18 +4,17 @@ brawl.state2.prototype= {
         game.load.image('sky', 'assets/sky2.png');
         game.load.image('ground', 'assets/platform2.png');
         game.load.image('testGround','assets/platformY.png');
-        game.load.image('star', 'assets/diamond.png');
         game.load.image('bullet', 'assets/bullets/bullet206.png');
         game.load.image('spikes', 'assets/spikes.png');
         game.load.image('invertedSpikes', 'assets/invertedSpikesTrue.png')
-        game.load.image('stun','assets/stungun.png');
         game.load.image('wing','assets/wings.png');
         game.load.image('shield','assets/shield2.png');
         game.load.image('fallingSpike',"assets/newSpikes.png");
         game.load.image('enemy','assets/trumpface.png');
-        game.load.spritesheet('dude', 'assets/orangefight.png',47,50,19);
-        game.load.spritesheet('fire','assets/spritefire.png',150,500);
         game.load.image('invisibleSpikes','assets/invisibleFloorSpikes.png');
+        game.load.spritesheet('dude', 'assets/white.png',47,50,19);
+        game.load.spritesheet('fire','assets/spritefire.png',150,500);
+        game.load.audio('musical', ['assets/destination-01.mp3']);
         //game.load.spritesheet('secondDude','assets/white.png',47,50,19);
     },
     create: function (){
@@ -23,26 +22,25 @@ brawl.state2.prototype= {
         addChangeStateEventListeners();
         //GENERAL MAP SETTINGS
         game.physics.startSystem(Phaser.Physics.ARCADE); // We're going to be using physics, so enable the Arcade Physics system
+
+        //Music Function
+        music = game.add.audio('musical');
+
+        music.play();
+
+        //Visuals of the Game
+        
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL; //Scales our Game
         game.add.sprite(0, 0, 'sky');   // A simple background for our game
 
         //GROUND PLATFORM FOR MAP
         platforms = game.add.group(); // The platforms group contains the ground and the 2 ledges we can jump on
         platforms.enableBody = true; // We will enable physics for any object that is created in this group
-        var groundOne = platforms.create(-100, game.world.height - 30, 'ground'); // Here we create the first part of the ground.
-        groundOne.scale.setTo(1, 1); // Scale it to fit the width of the game (the original sprite is 400x32 in size)
-        groundOne.body.immovable = true; //  This stops it from falling away when you jump on it
-
-        var groundTwo = platforms.create(500, game.world.height - 30, 'ground');
-        groundTwo.scale.setTo(1, 1);
-        groundTwo.body.immovable = true;
 
         //MAJOR LEDGE (quantity: one)
-        var randomNumber=Math.floor((Math.random() * 798) + 1);
-        var randomNumber2=Math.floor((Math.random() * 500) + 1);
-        var groundThree = platforms.create(randomNumber, randomNumber2, 'ground');
+        var groundThree = platforms.create(200, 300, 'ground');
         groundThree.body.immovable = true;
-        groundThree.body.velocity.setTo(70,60);
+        groundThree.body.velocity.setTo(10,100);
         groundThree.body.collideWorldBounds=true;
         groundThree.body.bounce.set(.5);
 
@@ -60,7 +58,7 @@ brawl.state2.prototype= {
             var randomNumber4=Math.floor((Math.random() * 60) + 1);
             }
             else if (i>=4) {
-            var randomNumber3=Math.floor((Math.random() * 60) - 120);
+            var randomNumber3=Math.floor((Math.random() * 120) - 240);
             var randomNumber4=Math.floor((Math.random() * 60) - 120);
             }
             ledges=ledge.create(randomNumber,randomNumber2,'testGround');
@@ -73,7 +71,7 @@ brawl.state2.prototype= {
         cursors = game.input.keyboard.createCursorKeys();
 
         // PLAYER 1 SETTINGS
-        player = game.add.sprite(0, game.world.height - 140, 'dude');
+        player = game.add.sprite(250, 250, 'dude');
         game.physics.arcade.enable(player); //enables physics for player 1
         player.body.bounce.y = 0;
         player.body.gravity.y = 200;
@@ -92,18 +90,65 @@ brawl.state2.prototype= {
         newFire.animations.play('move',4,true);
         newFire.body.immovable=true;
 
+        var newFireTwo=fire.create(100,340,'fire');
+        newFireTwo.body.setSize(0,100);
+        newFireTwo.animations.add('move');
+        newFireTwo.animations.play('move',4,true);
+        newFireTwo.body.immovable=true;
+
+        var newFireThree=fire.create(0,340,'fire');
+        newFireThree.body.setSize(0,100);
+        newFireThree.animations.add('move');
+        newFireThree.animations.play('move',4,true);
+        newFireThree.body.immovable=true;
+
+        var newFireFour=fire.create(500,340,'fire');
+        newFireFour.body.setSize(0,100);
+        newFireFour.animations.add('move');
+        newFireFour.animations.play('move',4,true);
+        newFireFour.body.immovable=true;
+
+        var newFireFive=fire.create(650,340,'fire');
+        newFireFive.body.setSize(0,100);
+        newFireFive.animations.add('move');
+        newFireFive.animations.play('move',4,true);
+        newFireFive.body.immovable=true;
+
+        var newFireSix=fire.create(400,340,'fire');
+        newFireSix.body.setSize(0,100);
+        newFireSix.animations.add('move');
+        newFireSix.animations.play('move',4,true);
+        newFireSix.body.immovable=true;
+
+        var newFireSeven=fire.create(200,340,'fire');
+        newFireSeven.body.setSize(0,100);
+        newFireSeven.animations.add('move');
+        newFireSeven.animations.play('move',4,true);
+        newFireSeven.body.immovable=true;
+
+        var newFireEight=fire.create(550,340,'fire');
+        newFireEight.body.setSize(0,100);
+        newFireEight.animations.add('move');
+        newFireEight.animations.play('move',4,true);
+        newFireEight.body.immovable=true;
+
+        var newFireNine=fire.create(-10,340,'fire');
+        newFireNine.body.setSize(0,100);
+        newFireNine.animations.add('move');
+        newFireNine.animations.play('move',4,true);
+        newFireNine.body.immovable=true;
+        
         // GROUND SPIKES (to give fire damage)
         spikes = game.add.group();
         spikes.enableBody = true;
-        var spikesTwo = spikes.create(350, game.world.height -40, 'spikes');
-        spikesTwo.scale.setTo(.75, .25);
-        spikesTwo.body.immovable = true;
         spikes.visible=false;
+        var spikesTwo = spikes.create(300, game.world.height -50, 'invisibleSpikes');
+        spikesTwo.body.immovable = true;
 
         //Invisible Spikes in the Ground to simulate being squished.
-        var spikesThree=spikes.create(0,game.world.height-10,'invisibleSpikes')
+        var spikesThree=spikes.create(0,game.world.height-50,'invisibleSpikes')
         spikesThree.body.immovable=true;
-        var spikesFour=spikes.create(515,game.world.height-10,'invisibleSpikes')
+        var spikesFour=spikes.create(515,game.world.height-50,'invisibleSpikes')
         spikesFour.body.immovable=true;
 
         // ROOF SPIKES
@@ -113,32 +158,6 @@ brawl.state2.prototype= {
         invertedSpikes.scale.setTo(1,.25);
         invertedSpikes.body.immovable=true;
 
-        // Weapon Creation, Creates 30 bullets, using the 'bullet' graphic, The bullet will be automatically killed when it leaves the world bounds
-        weapon = game.add.weapon(200, 'bullet');
-        game.physics.arcade.enable(weapon);
-
-        //weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-        weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
-        weapon.bulletKillDistance = 27;
-        //  Because our bullet is drawn facing up, we need to offset its rotation:
-        weapon.bulletAngleOffset = 0;
-        weapon.fireAngle=0;
-        weapon.bulletSpeed = 800;
-
-        //  Speed-up the rate of fire, allowing them to shoot 1 bullet every 60ms
-        weapon.fireRate = 0;
-
-        //  Tell the Weapon to track the 'player' Sprite, offset by 14px horizontally, 0 vertically
-        weapon.trackSprite(player, 25, 25);
-
-        // Give weapons physical properties
-        weapon.enableBody=true;
-        weapon.physicsBodyType= Phaser.Physics.ARCADE;
-
-        fireButton = this.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
-
-        weapon.bullets.visible=false;
-
         // Trump Sprite, One outside so a Trump Sprite exists at the beginning of the game.
 
         enemy=game.add.group();
@@ -146,23 +165,25 @@ brawl.state2.prototype= {
         game.physics.arcade.enable(enemy);
         var randomNumber=Math.floor((Math.random() * 700) + 1);
         var trumpImage=enemy.create(randomNumber,game.world.height-600,'enemy');
-        trumpImage.body.bounce.y = 1;// 0.7 + Math.random() * 0.2;
-        trumpImage.body.bounce.x = 1;
-        trumpImage.body.gravity.y=20;
+        trumpImage.body.bounce.y = .8;// 0.7 + Math.random() * 0.2;
+        trumpImage.body.bounce.x = .8;
+        trumpImage.body.gravity.y=10;
         trumpImage.body.collideWorldBounds = true;
         trumpImage.body.velocity.x = 200;
 
         //Timer for Item and Spike Generation
-        game.time.events.repeat(Phaser.Timer.SECOND * 10,15, itemGenerator, this);
-        game.time.events.repeat(Phaser.Timer.SECOND * 7,200, spikesFalling, this);
-        game.time.events.repeat(Phaser.Timer.SECOND * 15,2, trumpGenerator, this);
+        
+        game.time.events.repeat(Phaser.Timer.SECOND * 30,2, itemGenerator, this);
+        game.time.events.repeat(Phaser.Timer.SECOND * 7,10000, spikesFalling, this);
+        game.time.events.repeat(Phaser.Timer.SECOND * 15,6, trumpGenerator, this);
+        
 
         function trumpGenerator () {
             var randomNumber=Math.floor((Math.random() * 700) + 1);
             var trumpImage=enemy.create(randomNumber,game.world.height-600,'enemy');
-            trumpImage.body.bounce.y = 1;// 0.7 + Math.random() * 0.2;
-            trumpImage.body.bounce.x = 1;
-            trumpImage.body.gravity.y=20;
+            trumpImage.body.bounce.y = .8;// 0.7 + Math.random() * 0.2;
+            trumpImage.body.bounce.x = .8;
+            trumpImage.body.gravity.y=10;
             trumpImage.body.collideWorldBounds = true;
             trumpImage.body.velocity.x = 200;
         }
@@ -170,22 +191,19 @@ brawl.state2.prototype= {
         //To randomly generate items.
         function itemGenerator() {
             //Subject to change
-            stun = game.add.group();
             wing = game.add.group();
             shield = game.add.group();
 
             //enable physics
-            stun.enableBody = true;
             wing.enableBody = true;
             shield.enableBody = true;
 
-            stun.collideWorldBounds=true;
             wing.collideWorldBounds=true;
             shield.collideWorldBounds=true;
 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < 2; i++)
             {
-            var randomNumberX=Math.floor((Math.random() * 3) + 1);
+            var randomNumberX=Math.floor((Math.random() * 2) + 1);
 
             if (randomNumberX===1) {
                 var randomNumber=Math.floor((Math.random() * 700) + 1);
@@ -195,13 +213,6 @@ brawl.state2.prototype= {
             }
 
             else if (randomNumberX===2) {
-                var randomNumber=Math.floor((Math.random() * 700) + 1);
-                var stunGun = stun.create(randomNumber, game.world.height-600, 'stun');
-                stunGun.body.gravity.y = 300;
-                stunGun.body.bounce.y = 0.7 + Math.random() * 0.2;
-            }
-
-            else if (randomNumberX===3) {
                 var randomNumber=Math.floor((Math.random() * 700) + 1);
                 var wings = wing.create(randomNumber, game.world.height-600, 'wing');
                 wings.body.gravity.y = 300;
@@ -221,140 +232,109 @@ brawl.state2.prototype= {
             spikeFall.body.gravity.y = 300;
             }
         }
+
+        //Timer to Keep Track of Score//  Create our Timer
+
+        
+        timer = game.time.create(false);
+
+            //  Set a TimerEvent to occur after 2 seconds
+        timer.loop(1000, updateCounter, this);
+
+            //  Start the timer running - this is important!
+            //  It won't start automatically, allowing you to hook it to button events and the like.
+        timer.start();
         
         
     },
     update: function (){
-        //  Collide the player and the stars with the platforms
-    var hitPlatform = game.physics.arcade.collide(player, platforms);
-    var hitLedge=game.physics.arcade.collide(player,ledge, platformMover);
-    game.physics.arcade.collide(stun, ledge);
-    //game.physics.arcade.collide(platforms, platforms);
-    game.physics.arcade.collide(wing, ledge);
-    game.physics.arcade.collide(shield, ledge);
-    game.physics.arcade.collide(enemy,ledge);
-    game.physics.arcade.collide(enemy,spikes);
-    game.physics.arcade.collide(ledge,spikes);
-    game.physics.arcade.collide(platforms,spikes)
-    game.physics.arcade.collide(stun, platforms);
-    //game.physics.arcade.collide(platforms, platforms);
-    game.physics.arcade.collide(wing, platforms);
-    game.physics.arcade.collide(shield, platforms);
-    game.physics.arcade.collide(enemy,platforms);
+            //  Collide the player and the stars with the platforms
+        var hitPlatform = game.physics.arcade.collide(player, platforms);
+        var hitLedge=game.physics.arcade.collide(player,ledge, platformMover);
+        //game.physics.arcade.collide(platforms, platforms);
+        game.physics.arcade.collide(wing, ledge);
+        game.physics.arcade.collide(shield, ledge);
+        game.physics.arcade.collide(enemy,ledge);
+        game.physics.arcade.collide(enemy,spikes);
+        game.physics.arcade.collide(ledge,spikes);
+        game.physics.arcade.collide(platforms,spikes)
+        //game.physics.arcade.collide(platforms, platforms);
+        game.physics.arcade.collide(wing, platforms);
+        game.physics.arcade.collide(shield, platforms);
+        game.physics.arcade.collide(enemy,platforms);
 
-    //Checks to see if overlap in assets.
-    //game.physics.arcade.overlap(weapon.bullets, platforms, bulletHitPlatform, null, this);
-    game.physics.arcade.overlap(weapon.bullets, stun, killItemRange, null, this);
-    game.physics.arcade.overlap(player, spikes, deathOne, null, this);
-    game.physics.arcade.overlap(player, roofSpikes, deathOne, null, this);
-    game.physics.arcade.overlap(player, fallingSpikes, deathOne, null, this);
-    game.physics.arcade.overlap(player, shield, runFaster, null, this);
-    game.physics.arcade.overlap(player, wing, jumpHigher, null, this);
-    game.physics.arcade.overlap(player, stun, extendedWeapon, null, this);
-    game.physics.arcade.overlap(spikes, stun, deathTwo, null, this);
-    game.physics.arcade.overlap(spikes, wing, deathTwo, null, this);
-    game.physics.arcade.overlap(spikes, shield, deathTwo, null, this);
-    game.physics.arcade.overlap(fallingSpikes, ledge, deathOne, null, this);
-    game.physics.arcade.overlap(fallingSpikes, platforms, deathOne, null, this);
-    game.physics.arcade.overlap(player, enemy, deathOne, null, this);
+        //Checks to see if overlap in assets.
+        //game.physics.arcade.overlap(weapon.bullets, platforms, bulletHitPlatform, null, this);
+        game.physics.arcade.overlap(player, enemy, deathOne, null, this);
+        game.physics.arcade.overlap(player, spikes, deathOne, null, this);
+        game.physics.arcade.overlap(player, roofSpikes, deathOne, null, this);
+        game.physics.arcade.overlap(player, fallingSpikes, deathOne, null, this);
+        game.physics.arcade.overlap(player, shield, runFaster, null, this);
+        game.physics.arcade.overlap(player, wing, jumpHigher, null, this);
+        
+        game.physics.arcade.overlap(wing, spikes, deathTwo, null, this);
+        game.physics.arcade.overlap(shield, spikes, deathTwo, null, this);
+        
+        game.physics.arcade.overlap(fallingSpikes, ledge, deathTwo, null, this);
+        game.physics.arcade.overlap(fallingSpikes, platforms, deathTwo, null, this);
 
-    //  Reset the players velocity (movement)
-    player.body.velocity.x = 0;
+        //  Reset the players velocity (movement)
+        player.body.velocity.x = 0;
 
-    if (cursors.left.isDown)
-    {
-        player.body.velocity.x = -200;
-        player.animations.play('left');
-        weapon.fireAngle=-180;
-
-        if (runFastX) {
-            player.body.velocity.x = -400;
+        if (cursors.left.isDown) {
+            player.body.velocity.x = -200;
             player.animations.play('left');
-            weapon.fireAngle=-180;
-        }
-    }
-    else if (cursors.right.isDown)
-    {
-        player.body.velocity.x = 200;
-        player.animations.play('right');
-        weapon.fireAngle=0;
 
-        if (runFastX) {
-            player.body.velocity.x = 400;
+            if (runFastX) {
+                player.body.velocity.x = -400;
+                player.animations.play('left');
+            }
+        }
+        else if (cursors.right.isDown) {
+            player.body.velocity.x = 200;
             player.animations.play('right');
-            weapon.fireAngle=0;
+
+            if (runFastX) {
+                player.body.velocity.x = 400;
+                player.animations.play('right');
+            }
         }
-    }
 
-    // Function when you want to descend
-    else if (cursors.down.isDown) {
+        // Function when you want to descend
+        else if (cursors.down.isDown) {
 
-            player.body.velocity.y = 200;
+                player.body.velocity.y = 200;
 
-    }
-    else
-    {
-        //  Stand still
-        player.animations.stop();
-        player.frame = 8;
-    }
-
-    //  Allow the player to jump if they are touching the ground.
-    if (cursors.up.isDown && player.body.touching.down && (hitPlatform || hitLedge))
-    {
-        player.body.velocity.y = -250;
-        if (jumpHigherX) {
-            player.body.velocity.y = -425;
         }
-    }
-
-
-    if (fireButton.isDown)
-    {
-        if (cursors.left.isDown)
+        
+        else
         {
-        player.body.velocity.x = -90;
-        player.frame=17;
-        weapon.fireAngle=-180;
-        weapon.fire();
+            //  Stand still
+            player.animations.stop();
+            player.frame = 8;
         }
-        else if (cursors.right.isDown)
+
+        //  Allow the player to jump if they are touching the ground.
+        if (cursors.up.isDown && player.body.touching.down && (hitPlatform || hitLedge))
         {
-        player.body.velocity.x = 90;
-        player.frame=18;
-        weapon.fireAngle=0;
-        weapon.fire();
+            player.body.velocity.y = -250;
+            if (jumpHigherX) {
+                player.body.velocity.y = -425;
+            }
         }
-        if (stunGunWeapon)
-        {
-        if (cursors.left.isDown)
-        {
-            player.body.velocity.x = -90;
-            player.frame=17;
-            weapon.fireAngle=-180;
-            weapon.bulletKillDistance = 40;
-            weapon.fire();
-        }
-        else if (cursors.right.isDown)
-        {
-            player.body.velocity.x = 90;
-            player.frame=18;
-            weapon.fireAngle=0;
-            weapon.bulletKillDistance = 40;
-            weapon.bullets.visible=true;
-            weapon.fire();
-        }
-        }
-    }
+
+
     },
+
+    render: function () {
+        game.debug.text('Survived For: ' + total, 32, 64);
+    }
+    
     
     
 };
 
 //Event Handlers
-function killItemRange (weapon,stun) {
-    stun.kill();
-}
 
 function runFaster (player,shield) {
     runFastX=true;
@@ -366,35 +346,38 @@ function jumpHigher (player,wing) {
     wing.kill();
 }
 
-function extendedWeapon (player,stun) {
-    stunGunWeapon=true;
-    stun.kill();
-}
-
+//Platfrom Moving Mechanics
 function platformMover (player,ledge) {
   if (ledge.body.touching.left) {
-    ledge.body.velocity.x = 450;
+    ledge.body.velocity.x = 600;
   }
   else if (ledge.body.touching.right) {
-    ledge.body.velocity.x = -450;
+    ledge.body.velocity.x = -600;
   }
   else if (ledge.body.touching.up) {
-    ledge.body.velocity.y = -50;
+    ledge.body.velocity.y = 100;
   }
   else if (ledge.body.touching.down) {
     ledge.body.velocity.y=-300;
   }
 }
 
+//Removing Elements
 function deathOne(victim, killer) {
   victim.kill();
   game.state.start('state3');
 }
 
-function deathTwo(killer, victim) {
+function deathTwo(victim,killer) {
   victim.kill();
-  game.state.start('state3');
 }
+
+//Timer Elements
+function updateCounter() {
+    total++;
+}
+
+
 
 
 

@@ -1,7 +1,10 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO)
 
-var player, enemy, platforms, ledge, cursors, stun, wing, shield, spikes, roofSpikes, fire, fallingSpikes;
+var player, enemy, platforms, ledge, cursors, wing, shield, spikes, roofSpikes, fire, fallingSpikes;
 var runFastX = false, jumpHigherX = false, stunGunWeapon = false;
+var timer;
+var total = 0;
+var highestTotalLocal=0;
 
 ////////////////////////////////////////////////////////////////GAME STATES////////////////////////////////////////////////////////////////
 game.state.add('state1',brawl.state1);
@@ -14,8 +17,11 @@ game.state.start('state1');
 //game.state.start('state4');
 ////////////////////////////////////////////////////////////////PHASER 2 GAME (GLORY_BRAWL)////////////////////////////////////////////////////////////////
 
-// Game States Empty Object Held
+// Firebase for Leaderboard
 //
+
+// FIgure ot Later
+
 //Changing Game States Where you Press Numbers
 function changeState (i,stateNum) {
   console.log(i);
