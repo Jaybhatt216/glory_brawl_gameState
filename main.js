@@ -6,6 +6,7 @@ var timer;
 var smack;
 var music;
 var music1;
+var trumpQuotes;
 var total = 0;
 var highestTotalLocal=0;
 
