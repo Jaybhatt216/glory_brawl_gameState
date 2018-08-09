@@ -3,6 +3,9 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO)
 var player, enemy, platforms, ledge, cursors, wing, shield, spikes, roofSpikes, fire, fallingSpikes;
 var runFastX = false, jumpHigherX = false, stunGunWeapon = false;
 var timer;
+var smack;
+var music;
+var music1;
 var total = 0;
 var highestTotalLocal=0;
 

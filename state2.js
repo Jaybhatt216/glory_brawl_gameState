@@ -15,6 +15,7 @@ brawl.state2.prototype= {
         game.load.spritesheet('dude', 'assets/white.png',47,50,19);
         game.load.spritesheet('fire','assets/spritefire.png',150,500);
         game.load.audio('musical', ['assets/destination-01.mp3']);
+        game.load.audio('smack','assets/smack-1.mp3');
         //game.load.spritesheet('secondDude','assets/white.png',47,50,19);
     },
     create: function (){
@@ -22,10 +23,13 @@ brawl.state2.prototype= {
         //GENERAL MAP SETTINGS
         game.physics.startSystem(Phaser.Physics.ARCADE); // We're going to be using physics, so enable the Arcade Physics system
 
-        //Music Function
+        
+        //Adding Music Functions
         music = game.add.audio('musical');
+        smack = game.add.audio('smack');
 
-        music.play();
+        //Background music entire game that loops.
+        music.loopFull();
 
         //Visuals of the Game
         
@@ -355,6 +359,7 @@ function platformMover (player,ledge) {
   else if (ledge.body.touching.down) {
     ledge.body.velocity.y=-300;
   }
+  //smack.play();
 }
 
 //Removing Elements
