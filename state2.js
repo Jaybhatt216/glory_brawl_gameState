@@ -15,7 +15,7 @@ brawl.state2.prototype= {
         game.load.spritesheet('dude', 'assets/white.png',47,50,19);
         game.load.spritesheet('fire','assets/spritefire.png',150,500);
         game.load.audio('musical', ['assets/destination-01.mp3']);
-        game.load.audio('smack','assets/smack-1.mp3');
+        game.load.audio('smack',['assets/smack-1.mp3']);
         //game.load.spritesheet('secondDude','assets/white.png',47,50,19);
     },
     create: function (){
