@@ -19,7 +19,6 @@ brawl.state2.prototype= {
     },
     create: function (){
         console.log("state2");
-        addChangeStateEventListeners();
         //GENERAL MAP SETTINGS
         game.physics.startSystem(Phaser.Physics.ARCADE); // We're going to be using physics, so enable the Arcade Physics system
 
@@ -251,14 +250,10 @@ brawl.state2.prototype= {
             //  Collide the player and the stars with the platforms
         var hitPlatform = game.physics.arcade.collide(player, platforms);
         var hitLedge=game.physics.arcade.collide(player,ledge, platformMover);
-        //game.physics.arcade.collide(platforms, platforms);
         game.physics.arcade.collide(wing, ledge);
         game.physics.arcade.collide(shield, ledge);
         game.physics.arcade.collide(enemy,ledge);
         game.physics.arcade.collide(enemy,spikes);
-        game.physics.arcade.collide(ledge,spikes);
-        game.physics.arcade.collide(platforms,spikes)
-        //game.physics.arcade.collide(platforms, platforms);
         game.physics.arcade.collide(wing, platforms);
         game.physics.arcade.collide(shield, platforms);
         game.physics.arcade.collide(enemy,platforms);
@@ -355,7 +350,7 @@ function platformMover (player,ledge) {
     ledge.body.velocity.x = -600;
   }
   else if (ledge.body.touching.up) {
-    ledge.body.velocity.y = 100;
+    ledge.body.velocity.y = 150;
   }
   else if (ledge.body.touching.down) {
     ledge.body.velocity.y=-300;
