@@ -359,7 +359,7 @@ function platformMover (player,ledge) {
   else if (ledge.body.touching.down) {
     ledge.body.velocity.y=-300;
   }
-  //smack.play();
+  smack.play();
 }
 
 //Removing Elements
